@@ -8,7 +8,7 @@
 
 .vacancy__img {
     display: block;
-    min-height: 44px;
+    max-height: 50px;
     margin-bottom: 12px;
 }
 
