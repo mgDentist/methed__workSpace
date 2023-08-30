@@ -35,7 +35,7 @@
 
     .vacancies__container {
         flex-direction: column;
-        row-gap: 40px;
+        row-gap: 0;
     }
 
     .vacancies__filter-btn {
@@ -69,5 +69,12 @@
 
     .vacancies__cards {
         width: 100%;
+        padding-top: 8px;
+    }
+}
+
+@media (max-width: 640px) {
+    .vacancies__container {
+        gap: 24px;
     }
 }

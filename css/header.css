@@ -1,7 +1,7 @@
-
 .header {
     padding: 40px 0;
 }
+
 .header__container {
     display: flex;
     align-items: center;
@@ -29,5 +29,15 @@
     .header__link {
         padding: 10px 16px;
         font-size: 14px;
+    }
+}
+
+@media (max-width: 640px) {
+    .header {
+        padding: 24px 0 20px;
+    }
+
+    .header__link {
+        display: none;
     }
 }
