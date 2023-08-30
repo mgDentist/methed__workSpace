@@ -65,3 +65,18 @@
 .detail__resume {
 line-height: 1.4;
 }
+
+@media (max-width: 940px) {
+    .detail {
+        max-width: 680px;
+        padding: 24px 24px 72px;
+    }
+
+    .detail__main {
+        gap: 10px;
+    }
+
+    .detail__description {
+        max-width: 418px;
+    }
+}

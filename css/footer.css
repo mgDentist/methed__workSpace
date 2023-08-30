@@ -31,3 +31,9 @@
 .footer__link:hover {
     border-bottom: 1px solid #171717;
 }
+
+@media (max-width: 1140px) {
+    .footer {
+        padding: 40px 0 32px;
+    }
+}
