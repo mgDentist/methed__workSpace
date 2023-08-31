@@ -13,17 +13,21 @@
     flex-direction: column;
     gap: 32px;
 }
+
 .filter__fieldset {
     display: flex;
     flex-direction: column;
     align-items: start;
 }
+
 .filter__legend {
     margin-bottom: 12px;
 }
+
 .filter__select {
     width: 100%;
 }
+
 .filter__range {
     display: flex;
     align-items: center;
@@ -57,7 +61,19 @@
     padding: 8px 24px;
     border-radius: 4px;
     background-color: #a6adff;
+    transition: background-color 0.3s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
+
+.filter__accept-btn:focus-visible {
+    border-color: #4f58be;
+}
+
+.filter__accept-btn:hover {
+    color: #fff;
+    background-color: #2a18ff;
+}
+
 .filter__reset-btn {
     position: absolute;
     top: 7px;
@@ -78,8 +94,7 @@
     .filter__checkboxes {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 24px;
-        justify-content: space-between;
+        gap: 24px 70px;
     }
 
     .filter__buttons {

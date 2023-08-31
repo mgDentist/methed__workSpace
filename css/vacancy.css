@@ -4,6 +4,16 @@
     background-color: #fff;
     border-radius: 16px;
     cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.vacancy:hover {
+    background-color: #f9faff;
+}
+
+.vacancy:focus-visible {
+    outline: none;
+    border-color: #a6adff;
 }
 
 .vacancy__img {
