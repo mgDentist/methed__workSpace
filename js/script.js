@@ -83,7 +83,7 @@ const loadMoreVacancies = () => {
 
         urlWithParams.searchParams.set('page', pagination.currentPage + 1);
         urlWithParams.searchParams.set('limit', window.innerWidth < 768 ? 6 : 12);
-        
+
         getData(urlWithParams, renderMoreVacancies, renderError)
             .then(() => {
                 lastUrl = urlWithParams;
@@ -200,11 +200,47 @@ const observer = new IntersectionObserver(
     {
         rootMargin: '100px',
     },
-
 );
+
+// open-close filter
+
+const openFilter = (btn, dropDown, classNameBtn, classNameDropDown) => {
+    dropDown.style.height = `${dropDown.scrollHeight}px`;
+    btn.classList.add(classNameBtn);
+    dropDown.classList.add(classNameDropDown);
+};
+
+const closeFilter = (btn, dropDown, classNameBtn, classNameDropDown) => {
+    btn.classList.remove(classNameBtn);
+    dropDown.classList.remove(classNameDropDown);
+    dropDown.style.height = '';
+};
+
 
 const init = () => {
     const filterForm = document.querySelector('.filter__form');
+    const vacanciesFilterBtn = document.querySelector('.vacancies__filter-btn');
+    const vacanciesFilter = document.querySelector('.vacancies__filter');
+
+    // open-close filter
+
+    vacanciesFilterBtn.addEventListener('click', () => {
+        if (vacanciesFilterBtn.classList.contains('vacancies__filter-btn--active')) {
+            closeFilter(vacanciesFilterBtn, vacanciesFilter, 'vacancies__filter-btn--active', 'vacancies__filter--active');
+        } else {
+            openFilter(vacanciesFilterBtn, vacanciesFilter, 'vacancies__filter-btn--active', 'vacancies__filter--active');
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (vacanciesFilterBtn.classList.contains('vacancies__filter-btn--active')) {
+            // 1st variant
+            // vacanciesFilter.style.height = `${vacanciesFilter.scrollHeight}px`;
+            // 2nd variant
+            closeFilter(vacanciesFilterBtn, vacanciesFilter, 'vacancies__filter-btn--active', 'vacancies__filter--active');
+        }
+    });
+
 
     //select city
 
@@ -239,7 +275,7 @@ const init = () => {
     urlWithParams.searchParams.set('limit', window.innerWidth < 768 ? 6 : 12);
     urlWithParams.searchParams.set('page', 1);
 
-    getData(urlWithParams,renderVacancies,renderError)
+    getData(urlWithParams, renderVacancies, renderError)
         .then(() => {
             lastUrl = urlWithParams;
         });
@@ -251,6 +287,15 @@ const init = () => {
         if (vacancyCard) {
             const vacancyId = vacancyCard.dataset.id;
             openModal(vacancyId);
+        }
+    });
+
+    cardsList.addEventListener('keydown', ({ code, target}) => {
+        const vacancyCard = target.closest('.vacancy');
+        if ((code === 'Enter' || code === 'NumpadEnter') && target.closest('.vacancy')) {
+            const vacancyId = vacancyCard.dataset.id;
+            openModal(vacancyId);
+            target.blur();
         }
     });
 
@@ -266,15 +311,16 @@ const init = () => {
             urlWithParam.searchParams.append(key, value)
         });
 
-        getData(urlWithParam,renderVacancies,renderError)
-        .then(() => {
-            lastUrl = urlWithParam;
-        });
+        getData(urlWithParam, renderVacancies, renderError)
+            .then(() => {
+                lastUrl = urlWithParam;
+            })
+            .then(() => {
+                closeFilter(vacanciesFilterBtn, vacanciesFilter, 'vacancies__filter-btn--active', 'vacancies__filter--active');
+            });
     });
 };
 
 
 
 init();
-
-
